@@ -108,27 +108,27 @@ const LESSONS = [
             },
             {
                 type: "word",
-                word: "sad",
-                meaning: "triste",
-                text: "Escribe la palabra sad, que significa triste. S, A, D."
+                word: "fada",
+                meaning: "fada (fairy in Portuguese, similar to hada)",
+                text: "Escribe la palabra: fada. F, A, D, A."
             },
             {
                 type: "word",
-                word: "dad",
-                meaning: "papá",
-                text: "Escribe la palabra dad, que significa papá. D, A, D."
+                word: "afa",
+                meaning: "afa (heat/swelter)",
+                text: "Escribe la palabra: afa. A, F, A."
             },
             {
                 type: "word",
-                word: "add",
-                meaning: "añadir",
-                text: "Escribe la palabra add, que significa añadir. A, D, D."
+                word: "asa",
+                meaning: "asa (handle)",
+                text: "Escribe la palabra en español: asa. A, S, A."
             },
             {
                 type: "word",
-                word: "as",
-                meaning: "como",
-                text: "Escribe la palabra as, que significa como. A, S."
+                word: "sada",
+                meaning: "práctica con s, a, d, a",
+                text: "Escribe: sada. S, A, D, A."
             }
         ]
     },
@@ -171,27 +171,27 @@ const LESSONS = [
             },
             {
                 type: "word",
-                word: "all",
-                meaning: "todo",
-                text: "Escribe la palabra all, que significa todo. A, L, L."
+                word: "sala",
+                meaning: "sala (room)",
+                text: "Escribe la palabra en español: sala. S, A, L, A."
             },
             {
                 type: "word",
-                word: "ask",
-                meaning: "preguntar",
-                text: "Escribe la palabra ask, que significa preguntar. A, S, K."
+                word: "ala",
+                meaning: "ala (wing)",
+                text: "Escribe la palabra en español: ala. A, L, A."
             },
             {
                 type: "word",
-                word: "fall",
-                meaning: "caer",
-                text: "Escribe la palabra fall, que significa caer. F, A, L, L."
+                word: "falla",
+                meaning: "falla (fails)",
+                text: "Escribe la palabra en español: falla. F, A, L, L, A."
             },
             {
                 type: "word",
-                word: "salad",
-                meaning: "ensalada",
-                text: "Escribe la palabra salad, que significa ensalada. S, A, L, A, D."
+                word: "alfa",
+                meaning: "alfa (alpha)",
+                text: "Escribe la palabra en español: alfa. A, L, F, A."
             }
         ]
     },
@@ -205,33 +205,103 @@ const LESSONS = [
             },
             {
                 type: "word",
-                word: "lad",
-                meaning: "muchacho",
-                text: "Escribe la palabra lad, que significa muchacho. L, A, D."
-            },
-            {
-                type: "word",
-                word: "lass",
-                meaning: "muchacha",
-                text: "Escribe la palabra lass, que significa muchacha. L, A, S, S."
+                word: "ask",
+                meaning: "preguntar (ask)",
+                text: "Escribe la palabra ask, que significa preguntar. A, S, K."
             },
             {
                 type: "word",
                 word: "flask",
-                meaning: "matraz",
+                meaning: "matraz (flask)",
                 text: "Escribe la palabra flask, que significa matraz. F, L, A, S, K."
             },
             {
                 type: "word",
                 word: "falls",
-                meaning: "cae",
+                meaning: "cae (falls)",
                 text: "Escribe la palabra falls, que significa cae. F, A, L, L, S."
             },
             {
                 type: "word",
-                word: "lass",
-                meaning: "muchacha",
-                text: "Escribe la palabra lass, que significa muchacha. L, A, S, S."
+                word: "salsa",
+                meaning: "salsa",
+                text: "Escribe la palabra en español: salsa. S, A, L, S, A."
+            },
+            {
+                type: "word",
+                word: "salsas",
+                meaning: "salsas",
+                text: "Escribe la palabra en español: salsas. S, A, L, S, A, S."
+            }
+        ]
+    },
+    // LESSON 4: Adding G and H
+    {
+        title: "Lección 4: Letras G y H",
+        steps: [
+            {
+                type: "instruction",
+                text: "¡Felicidades por tu progreso! Ahora vamos a agregar dos letras más de la fila base: G y H. La G se presiona con tu dedo índice izquierdo, justo a la izquierda de la F. La H se presiona con tu dedo índice derecho, justo a la izquierda de la J. Practiquemos."
+            },
+            {
+                type: "letter",
+                key: "g",
+                context: "gala",
+                contextES: "gala",
+                text: "Escribe la letra G, como en gala."
+            },
+            {
+                type: "letter",
+                key: "h",
+                context: "hada",
+                contextES: "hada",
+                text: "Escribe la letra H, como en hada."
+            },
+            {
+                type: "instruction",
+                text: "Excelente. Ahora practiquemos palabras con G y H."
+            },
+            {
+                type: "word",
+                word: "gala",
+                meaning: "gala",
+                text: "Escribe la palabra en español: gala. G, A, L, A."
+            },
+            {
+                type: "word",
+                word: "hada",
+                meaning: "hada (fairy)",
+                text: "Escribe la palabra en español: hada. H, A, D, A."
+            },
+            {
+                type: "word",
+                word: "saga",
+                meaning: "saga",
+                text: "Escribe la palabra en español: saga. S, A, G, A."
+            },
+            {
+                type: "word",
+                word: "hala",
+                meaning: "hala (haul)",
+                text: "Escribe la palabra en español: hala. H, A, L, A."
+            },
+            {
+                type: "word",
+                word: "gasa",
+                meaning: "gasa (gauze)",
+                text: "Escribe la palabra en español: gasa. G, A, S, A."
+            },
+            {
+                type: "word",
+                word: "alga",
+                meaning: "alga (algae)",
+                text: "Escribe la palabra en español: alga. A, L, G, A."
+            },
+            {
+                type: "word",
+                word: "daga",
+                meaning: "daga (dagger)",
+                text: "Escribe la palabra en español: daga. D, A, G, A."
             }
         ]
     }
@@ -268,10 +338,12 @@ class TypingTutor {
         this.incorrectCount = 0;
         this.wordsCompleted = 0;
         this.isLessonActive = false;
+        this.waitingForNextLesson = false;
         
         this.audioQueue = [];
         this.isSpeaking = false;
         this.lastSpaceTime = 0;
+        this.selectedVoiceName = null;
 
         this.speechRate = 1.0;
         this.speechVolume = 1.0;
@@ -387,14 +459,34 @@ class TypingTutor {
 
     // Load available voices
     async loadAvailableVoices() {
-        this.debug('✅ Using browser voices');
-        // Simple placeholder - voices are handled automatically by browserSpeak
+        const populateVoices = () => {
+            const voices = window.speechSynthesis.getVoices();
+            const spanishVoices = voices.filter(v => v.lang.startsWith('es'));
+            
+            this.debug(`✅ Loaded ${voices.length} voices (${spanishVoices.length} Spanish)`);
+            
+            if (spanishVoices.length > 0) {
+                this.elements.voiceSelect.innerHTML = '<option value="">Voz Automática</option>';
+                spanishVoices.forEach(voice => {
+                    const option = document.createElement('option');
+                    option.value = voice.name;
+                    option.textContent = `${voice.name} (${voice.lang})`;
+                    this.elements.voiceSelect.appendChild(option);
+                });
+            }
+        };
+        
+        // Voices may load asynchronously
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = populateVoices;
+        }
+        populateVoices();
     }
 
     // Select a specific voice
     selectVoice(voiceName) {
-        this.debug(`🎤 Voice selected: ${voiceName}`);
-        // Voice selection handled by browser
+        this.selectedVoiceName = voiceName || null;
+        this.debug(`🎤 Voice selected: ${voiceName || 'Automatic'}`);
     }
 
     // Text-to-speech function
@@ -458,20 +550,30 @@ class TypingTutor {
         
         // Get available voices and pick the best one for the language
         const voices = window.speechSynthesis.getVoices();
-        this.debug(`📢 Available voices: ${voices.length}`);
         let selectedVoice = null;
         
-        if (lang === 'es-ES' || lang.startsWith('es')) {
-            // Prefer high-quality Spanish voices
-            selectedVoice = voices.find(v => v.lang === 'es-ES' && v.name.includes('Premium')) ||
-                           voices.find(v => v.lang === 'es-ES' && v.name.includes('Google')) ||
-                           voices.find(v => v.lang === 'es-MX' && v.name.includes('Google')) ||
-                           voices.find(v => v.lang.startsWith('es'));
-        } else {
-            // Prefer high-quality English voices
-            selectedVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Premium')) ||
-                           voices.find(v => v.lang === 'en-US' && v.name.includes('Google')) ||
-                           voices.find(v => v.lang === 'en-US');
+        // Use user-selected voice if available
+        if (this.selectedVoiceName) {
+            selectedVoice = voices.find(v => v.name === this.selectedVoiceName);
+            if (selectedVoice) {
+                this.debug(`Using selected voice: ${selectedVoice.name}`);
+            }
+        }
+        
+        // Otherwise, auto-select best voice for language
+        if (!selectedVoice) {
+            if (lang === 'es-ES' || lang.startsWith('es')) {
+                // Prefer high-quality Spanish voices
+                selectedVoice = voices.find(v => v.lang === 'es-ES' && v.name.includes('Premium')) ||
+                               voices.find(v => v.lang === 'es-ES' && v.name.includes('Google')) ||
+                               voices.find(v => v.lang === 'es-MX' && v.name.includes('Google')) ||
+                               voices.find(v => v.lang.startsWith('es'));
+            } else {
+                // Prefer high-quality English voices
+                selectedVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Premium')) ||
+                               voices.find(v => v.lang === 'en-US' && v.name.includes('Google')) ||
+                               voices.find(v => v.lang === 'en-US');
+            }
         }
         
         if (selectedVoice) {
@@ -634,6 +736,16 @@ class TypingTutor {
     
     // Handle keydown events
     handleKeydown(e) {
+        // Handle Space key when waiting for next lesson
+        if (this.waitingForNextLesson && e.key === ' ') {
+            e.preventDefault();
+            this.waitingForNextLesson = false;
+            this.currentLessonIndex++;
+            this.elements.currentLesson.textContent = this.currentLessonIndex + 1;
+            this.startLesson();
+            return;
+        }
+        
         if (!this.currentStep) return;
         
         // Handle Space key
@@ -746,17 +858,21 @@ class TypingTutor {
         this.elements.repeatBtn.disabled = true;
         this.elements.skipBtn.disabled = true;
         
-        this.speak(STRINGS.lessonComplete, true, 'es-ES');
-        
         // Check if user should advance to next lesson
         const accuracy = this.calculateAccuracy();
         if (accuracy >= 70 && this.currentLessonIndex < LESSONS.length - 1) {
-            setTimeout(() => {
-                this.currentLessonIndex++;
-                this.elements.currentLesson.textContent = this.currentLessonIndex + 1;
-                const nextLesson = LESSONS[this.currentLessonIndex];
-                this.speak(`Avanzando a ${nextLesson.title}. ` + STRINGS.levelUp, true, 'es-ES');
-            }, 2000);
+            this.speak(STRINGS.lessonComplete + ' ' + STRINGS.levelUp, true, 'es-ES', () => {
+                setTimeout(() => {
+                    const nextLesson = LESSONS[this.currentLessonIndex + 1];
+                    this.speak(`Presiona la barra espaciadora para avanzar a ${nextLesson.title}, o presiona el botón Iniciar Lección.`, true, 'es-ES');
+                    
+                    // Enable space bar to start next lesson
+                    this.waitingForNextLesson = true;
+                }, 500);
+            });
+        } else {
+            this.speak(STRINGS.lessonComplete, true, 'es-ES');
+            this.waitingForNextLesson = false;
         }
         
         this.currentStepIndex = 0;
