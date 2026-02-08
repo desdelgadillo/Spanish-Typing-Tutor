@@ -147,16 +147,16 @@ const LESSONS = [
             {
                 type: "letter",
                 key: "j",
-                context: "jump",
-                contextES: "saltar",
-                text: "Escribe la letra J, como en jump."
+                context: "jamón",
+                contextES: "jamón",
+                text: "Escribe la letra J, como en jamón."
             },
             {
                 type: "letter",
                 key: "k",
-                context: "kite",
-                contextES: "cometa",
-                text: "Escribe la letra K, como en kite."
+                context: "kilo",
+                contextES: "kilo",
+                text: "Escribe la letra K, como en kilo."
             },
             {
                 type: "letter",
