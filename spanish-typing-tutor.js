@@ -304,6 +304,122 @@ const LESSONS = [
                 text: "Escribe la palabra en español: daga. D, A, G, A."
             }
         ]
+    },
+    // LESSON 5: Spanish Practice - Home Row
+    {
+        title: "Lección 5: Práctica en Español - Fila Base",
+        steps: [
+            {
+                type: "instruction",
+                text: "En esta lección practicaremos palabras en español usando toda la fila base. Mantén los dedos en la posición base y escribe con calma."
+            },
+            {
+                type: "word",
+                word: "salsa",
+                meaning: "salsa",
+                text: "Escribe la palabra en español: salsa. S, A, L, S, A."
+            },
+            {
+                type: "word",
+                word: "falda",
+                meaning: "falda",
+                text: "Escribe la palabra en español: falda. F, A, L, D, A."
+            },
+            {
+                type: "word",
+                word: "gasa",
+                meaning: "gasa",
+                text: "Escribe la palabra en español: gasa. G, A, S, A."
+            },
+            {
+                type: "word",
+                word: "saga",
+                meaning: "saga",
+                text: "Escribe la palabra en español: saga. S, A, G, A."
+            },
+            {
+                type: "word",
+                word: "alga",
+                meaning: "alga",
+                text: "Escribe la palabra en español: alga. A, L, G, A."
+            },
+            {
+                type: "word",
+                word: "hada",
+                meaning: "hada",
+                text: "Escribe la palabra en español: hada. H, A, D, A."
+            },
+            {
+                type: "word",
+                word: "alas",
+                meaning: "alas",
+                text: "Escribe la palabra en español: alas. A, L, A, S."
+            }
+        ]
+    },
+    // LESSON 6: Adding R and U
+    {
+        title: "Lección 6: Letras R y U",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos las letras R y U. Desde la fila base, tu dedo índice izquierdo está en la F. Para encontrar la R, mueve ese dedo una tecla hacia arriba. Tu dedo índice derecho está en la J. Para encontrar la U, mueve ese dedo una tecla hacia arriba. Practiquemos primero las letras."
+            },
+            {
+                type: "letter",
+                key: "r",
+                context: "rosa",
+                contextES: "rosa",
+                text: "Escribe la letra R, como en rosa."
+            },
+            {
+                type: "letter",
+                key: "u",
+                context: "uva",
+                contextES: "uva",
+                text: "Escribe la letra U, como en uva."
+            },
+            {
+                type: "instruction",
+                text: "Excelente. Ahora escribiremos palabras con R y U. Recuerda: R es arriba de F, y U es arriba de J."
+            },
+            {
+                type: "word",
+                word: "jura",
+                meaning: "jura",
+                text: "Escribe la palabra en español: jura. J, U, R, A."
+            },
+            {
+                type: "word",
+                word: "dura",
+                meaning: "dura",
+                text: "Escribe la palabra en español: dura. D, U, R, A."
+            },
+            {
+                type: "word",
+                word: "gula",
+                meaning: "gula",
+                text: "Escribe la palabra en español: gula. G, U, L, A."
+            },
+            {
+                type: "word",
+                word: "rusa",
+                meaning: "rusa",
+                text: "Escribe la palabra en español: rusa. R, U, S, A."
+            },
+            {
+                type: "word",
+                word: "ruga",
+                meaning: "ruga",
+                text: "Escribe la palabra en español: ruga. R, U, G, A."
+            },
+            {
+                type: "word",
+                word: "sudar",
+                meaning: "sudar",
+                text: "Escribe la palabra en español: sudar. S, U, D, A, R."
+            }
+        ]
     }
 ];
 
