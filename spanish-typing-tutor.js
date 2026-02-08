@@ -77,16 +77,16 @@ const LESSONS = [
             {
                 type: "letter",
                 key: "f",
-                context: "fold",
-                contextES: "doblar",
-                text: "Escribe la letra F, como en fold."
+                context: "falda",
+                contextES: "falda",
+                text: "Escribe la letra F, como en falda."
             },
             {
                 type: "letter",
                 key: "d",
-                context: "did",
-                contextES: "hizo",
-                text: "Escribe la letra D, como en did."
+                context: "dobla",
+                contextES: "dobla",
+                text: "Escribe la letra D, como en dobla."
             },
             {
                 type: "letter",
@@ -110,24 +110,26 @@ const LESSONS = [
                 type: "word",
                 word: "sad",
                 meaning: "triste",
-                text: "Escribe la palabra sad, que significa triste."
+                text: "Escribe la palabra sad, que significa triste. S, A, D."
             },
             {
                 type: "word",
                 word: "dad",
                 meaning: "papá",
-                text: "Escribe la palabra dad, que significa papá."
+                text: "Escribe la palabra dad, que significa papá. D, A, D."
             },
             {
                 type: "word",
                 word: "add",
                 meaning: "añadir",
-                text: "Escribe la palabra add, que significa añadir."
+                text: "Escribe la palabra add, que significa añadir. A, D, D."
             },
             {
                 type: "word",
                 word: "as",
                 meaning: "como",
+                text: "Escribe la palabra as, que significa como. A, S."
+            }
                 text: "Escribe la palabra as, que significa como."
             }
         ]
@@ -173,25 +175,25 @@ const LESSONS = [
                 type: "word",
                 word: "all",
                 meaning: "todo",
-                text: "Escribe la palabra all, que significa todo."
+                text: "Escribe la palabra all, que significa todo. A, L, L."
             },
             {
                 type: "word",
                 word: "ask",
                 meaning: "preguntar",
-                text: "Escribe la palabra ask, que significa preguntar."
+                text: "Escribe la palabra ask, que significa preguntar. A, S, K."
             },
             {
                 type: "word",
                 word: "fall",
                 meaning: "caer",
-                text: "Escribe la palabra fall, que significa caer."
+                text: "Escribe la palabra fall, que significa caer. F, A, L, L."
             },
             {
                 type: "word",
                 word: "salad",
                 meaning: "ensalada",
-                text: "Escribe la palabra salad, que significa ensalada."
+                text: "Escribe la palabra salad, que significa ensalada. S, A, L, A, D."
             }
         ]
     },
@@ -207,31 +209,31 @@ const LESSONS = [
                 type: "word",
                 word: "lad",
                 meaning: "muchacho",
-                text: "Escribe la palabra lad, que significa muchacho."
+                text: "Escribe la palabra lad, que significa muchacho. L, A, D."
             },
             {
                 type: "word",
                 word: "lass",
                 meaning: "muchacha",
-                text: "Escribe la palabra lass, que significa muchacha."
+                text: "Escribe la palabra lass, que significa muchacha. L, A, S, S."
             },
             {
                 type: "word",
                 word: "flask",
                 meaning: "matraz",
-                text: "Escribe la palabra flask, que significa matraz."
+                text: "Escribe la palabra flask, que significa matraz. F, L, A, S, K."
             },
             {
                 type: "word",
                 word: "falls",
                 meaning: "cae",
-                text: "Escribe la palabra falls, que significa cae."
+                text: "Escribe la palabra falls, que significa cae. F, A, L, L, S."
             },
             {
                 type: "word",
                 word: "lass",
                 meaning: "muchacha",
-                text: "Escribe la palabra lass, que significa muchacha."
+                text: "Escribe la palabra lass, que significa muchacha. L, A, S, S."
             }
         ]
     }
