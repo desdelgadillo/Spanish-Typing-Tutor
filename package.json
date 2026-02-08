@@ -1,0 +1,13 @@
+{
+  "name": "spanish-typing-tutor",
+  "version": "1.0.0",
+  "description": "A fully accessible typing tutor for blind Spanish speakers learning English typing.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "dotenv": "^16.4.1"
+  }
+}

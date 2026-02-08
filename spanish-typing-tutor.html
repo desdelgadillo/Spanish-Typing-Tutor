@@ -1,0 +1,304 @@
+                        <!DOCTYPE html>
+            html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor de Mecanografía en Inglés para Hispanohablantes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .info-panel {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        
+        .lesson-area {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        #targetText {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #3a3a3a;
+            border-radius: 5px;
+            letter-spacing: 3px;
+            text-align: center;
+        }
+        
+        #userInput {
+            width: 100%;
+            font-size: 2rem;
+            padding: 15px;
+            background-color: #3a3a3a;
+            border: 3px solid #4a4a4a;
+            border-radius: 5px;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-align: center;
+        }
+        
+        #userInput:focus {
+            outline: none;
+            border-color: #00aaff;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #00aaff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        select {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #00aaff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        select:hover {
+            background-color: #0088cc;
+        }
+        
+        select:focus {
+            outline: none;
+            background-color: #0088cc;
+        }
+        
+        button:hover {
+            background-color: #0088cc;
+        }
+        
+        button:active {
+            background-color: #006699;
+        }
+        
+        button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+        
+        .stats-panel {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            background-color: #3a3a3a;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00aaff;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            margin-top: 5px;
+            color: #aaaaaa;
+        }
+        
+        .correct {
+            color: #00ff00;
+        }
+        
+        .incorrect {
+            color: #ff0000;
+        }
+        
+        .screen-reader-only {
+            position: absolute;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        #audio-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        #debugPanel {
+            background-color: #1a1a1a;
+            border: 2px solid #00aaff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+        
+        .debug-line {
+            margin: 3px 0;
+            padding: 2px 5px;
+        }
+        
+        .debug-success {
+            color: #00ff00;
+        }
+        
+        .debug-error {
+            color: #ff6600;
+        }
+        
+        .debug-info {
+            color: #00aaff;
+        }
+    </style>
+</head>
+<body>
+        <!-- Audio overlay -->
+            <div id="audio-overlay" role="button" tabindex="0" aria-label="Haz clic para activar el audio">
+        <h1>Tutor de Mecanografía</h1>
+        <p>Haz clic en cualquier lugar o presiona una tecla para activar el audio y comenzar.</p>
+    </div>
+    <div class="container">
+        <h1>Tutor de Mecanografía en Inglés</h1>
+        
+        <div class="info-panel">
+            <div class="info-item">
+                <strong>Nivel Actual:</strong> <span id="currentLevel">Principiante - Fila Base</span>
+            </div>
+            <div class="info-item">
+                <strong>Lección:</strong> <span id="currentLesson">1</span>
+            </div>
+        </div>
+        
+        <div class="lesson-area">
+            <div id="targetText" aria-live="polite">Presiona Iniciar para comenzar</div>
+            <input 
+                type="text" 
+                id="userInput" 
+                placeholder="Escribe aquí..." 
+                disabled
+                aria-label="Campo de entrada para escribir"
+                autocomplete="off"
+                spellcheck="false"
+            />
+        </div>
+        
+        <div class="button-group">
+            <button id="startBtn" aria-label="Iniciar lección">Iniciar Lección</button>
+            <button id="repeatBtn" disabled aria-label="Repetir instrucciones">Repetir Instrucciones</button>
+            <button id="skipBtn" disabled aria-label="Saltar a la siguiente palabra">Saltar Palabra</button>
+            <select id="voiceSelect" aria-label="Seleccionar voz">
+                <option value="">Cargando voces...</option>
+            </select>
+        </div>
+        
+        <div class="stats-panel">
+            <h2>Estadísticas</h2>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="correctCount">0</div>
+                    <div class="stat-label">Correctas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="incorrectCount">0</div>
+                    <div class="stat-label">Incorrectas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="accuracyRate">0%</div>
+                    <div class="stat-label">Precisión</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="wordsCompleted">0</div>
+                    <div class="stat-label">Palabras Completadas</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Debug Panel -->
+        <div id="debugPanel">
+            <strong>🐛 Debug Log:</strong>
+            <div id="debugLog"></div>
+        </div>
+        
+        <!-- Screen reader announcements -->
+        <div id="announcements" class="screen-reader-only" role="status" aria-live="assertive" aria-atomic="true"></div>
+    </div>
+    
+    <script src="spanish-typing-tutor.js"></script>
+</body>
+</html>
