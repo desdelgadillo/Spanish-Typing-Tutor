@@ -62,7 +62,7 @@ const LESSONS = [
         steps: [
             {
                 type: "instruction",
-                text: "¡Comencemos a aprender a escribir sin mirar el teclado! Todo lo que tienes que hacer es escribir lo que yo digo. Cuando termines de escribir, presiona la tecla enter. Esa es la tecla grande a la derecha de tu tecla de apóstrofe. Practiquemos. Presiona la tecla enter ahora. O, pide a tu asistente que coloque tu dedo en la tecla enter. Cuando te sientas cómodo con la tecla enter, presiónala y comenzaremos."
+                text: "¡Comencemos a aprender a escribir sin mirar el teclado! Todo lo que tienes que hacer es escribir lo que yo digo. El programa reconocerá automáticamente cuando hayas terminado de escribir correctamente. También puedes presionar la barra espaciadora para verificar tu respuesta. Si presionas la barra espaciadora dos veces rápidamente, repetiré la instrucción. Ahora, practiquemos con la tecla enter. Esa es la tecla grande a la derecha de tu tecla de apóstrofe. Presiona la tecla enter ahora, o pide a tu asistente que coloque tu dedo en la tecla enter."
             },
             {
                 type: "enter_practice",
@@ -271,6 +271,7 @@ class TypingTutor {
         
         this.audioQueue = [];
         this.isSpeaking = false;
+        this.lastSpaceTime = 0;
 
         this.speechRate = 1.0;
         this.speechVolume = 1.0;
@@ -592,6 +593,12 @@ class TypingTutor {
                 
                 if (lastChar === expectedChar) {
                     e.target.style.borderColor = '#00ff00';
+                    
+                    // Check if they've completed the entire expected text
+                    if (userText === this.currentExpected) {
+                        // Automatically submit when complete
+                        setTimeout(() => this.checkAnswer(), 100);
+                    }
                 } else {
                     e.target.style.borderColor = '#ff0000';
                 }
@@ -604,6 +611,26 @@ class TypingTutor {
     // Handle keydown events
     handleKeydown(e) {
         if (!this.currentStep) return;
+        
+        // Handle Space key
+        if (e.key === ' ' && (this.currentStep.type === 'letter' || this.currentStep.type === 'word')) {
+            const now = Date.now();
+            const timeSinceLastSpace = now - this.lastSpaceTime;
+            
+            // Double-space to repeat (within 500ms)
+            if (timeSinceLastSpace < 500) {
+                e.preventDefault();
+                this.repeatInstructions();
+                this.lastSpaceTime = 0; // Reset to prevent triple-space triggering
+                return;
+            }
+            
+            // Single space - submit answer
+            this.lastSpaceTime = now;
+            e.preventDefault();
+            this.checkAnswer();
+            return;
+        }
         
         // Interrupt current speech on any keypress
         if (window.speechSynthesis && window.speechSynthesis.speaking) {
@@ -627,12 +654,6 @@ class TypingTutor {
                 this.speak(keyName, true, 'es-ES');
             }
             return;
-        }
-        
-        // Handle Enter to submit for letter/word steps
-        if (e.key === 'Enter' && (this.currentStep.type === 'letter' || this.currentStep.type === 'word')) {
-            e.preventDefault();
-            this.checkAnswer();
         }
     }
     
