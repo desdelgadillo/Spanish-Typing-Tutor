@@ -62,13 +62,13 @@ const LESSONS = [
         steps: [
             {
                 type: "instruction",
-                text: "¡Comencemos a aprender a escribir sin mirar el teclado! Todo lo que tienes que hacer es escribir lo que yo digo. El programa reconocerá automáticamente cuando hayas terminado de escribir correctamente. También puedes presionar la barra espaciadora para verificar tu respuesta. Si presionas la barra espaciadora dos veces rápidamente, repetiré la instrucción. Ahora, practiquemos con la tecla enter. Esa es la tecla grande a la derecha de tu tecla de apóstrofe. Presiona la tecla enter ahora, o pide a tu asistente que coloque tu dedo en la tecla enter."
+                text: "¡Comencemos a aprender a escribir sin mirar el teclado! Todo lo que tienes que hacer es escribir lo que yo digo. El programa reconocerá automáticamente cuando hayas terminado de escribir correctamente. También puedes presionar la barra espaciadora para verificar tu respuesta. Si presionas la barra espaciadora dos veces rápidamente, repetiré la instrucción. Primero, practiquemos con la barra espaciadora. Es la tecla larga en la parte inferior del teclado. Presiona la barra espaciadora ahora, o pide a tu asistente que coloque tus pulgares en la barra espaciadora."
             },
             {
-                type: "enter_practice",
-                text: "Presiona Enter para continuar",
-                onSuccess: "¡Buen trabajo! Encontraste la tecla enter.",
-                onWrongKey: "Lo siento, esa no era la tecla enter. Esa era la tecla {key}. Intenta de nuevo, o pide a tu asistente que presione enter. Alternativamente, sigue presionando las teclas para escuchar lo que hacen."
+                type: "space_practice",
+                text: "Presiona la barra espaciadora para continuar",
+                onSuccess: "¡Buen trabajo! Encontraste la barra espaciadora. Esta será tu tecla más usada al escribir.",
+                onWrongKey: "Lo siento, esa no era la barra espaciadora. Esa era la tecla {key}. Intenta de nuevo, o pide a tu asistente que presione la barra espaciadora. Alternativamente, sigue presionando las teclas para escuchar lo que hacen."
             },
             {
                 type: "instruction",
@@ -79,14 +79,14 @@ const LESSONS = [
                 key: "f",
                 context: "fold",
                 contextES: "doblar",
-                text: "Escribe la letra F, como en fold, que significa doblar."
+                text: "Escribe la letra F, como en fold."
             },
             {
                 type: "letter",
                 key: "d",
                 context: "did",
                 contextES: "hizo",
-                text: "Escribe la letra D, como en did, que significa hizo."
+                text: "Escribe la letra D, como en did."
             },
             {
                 type: "letter",
@@ -100,7 +100,7 @@ const LESSONS = [
                 key: "a",
                 context: "aqua",
                 contextES: "agua",
-                text: "Escribe la letra A, como en aqua, que significa agua."
+                text: "Escribe la letra A, como en aqua."
             },
             {
                 type: "instruction",
@@ -149,21 +149,21 @@ const LESSONS = [
                 key: "j",
                 context: "jump",
                 contextES: "saltar",
-                text: "Escribe la letra J, como en jump, que significa saltar."
+                text: "Escribe la letra J, como en jump."
             },
             {
                 type: "letter",
                 key: "k",
                 context: "kite",
                 contextES: "cometa",
-                text: "Escribe la letra K, como en kite, que significa cometa."
+                text: "Escribe la letra K, como en kite."
             },
             {
                 type: "letter",
                 key: "l",
                 context: "lake",
                 contextES: "lago",
-                text: "Escribe la letra L, como en lake, que significa lago."
+                text: "Escribe la letra L, como en lake."
             },
             {
                 type: "instruction",
@@ -532,6 +532,14 @@ class TypingTutor {
                 });
                 break;
                 
+            case 'space_practice':
+                // Wait for Space key
+                this.elements.targetText.textContent = step.text;
+                this.elements.userInput.disabled = false;
+                this.speak(step.text, true, 'es-ES');
+                this.elements.userInput.focus();
+                break;
+                
             case 'enter_practice':
                 // Wait for Enter key
                 this.elements.targetText.textContent = step.text;
@@ -635,6 +643,25 @@ class TypingTutor {
         // Interrupt current speech on any keypress
         if (window.speechSynthesis && window.speechSynthesis.speaking) {
             window.speechSynthesis.cancel();
+        }
+        
+        // Handle Space key for space_practice step
+        if (this.currentStep.type === 'space_practice') {
+            e.preventDefault();
+            
+            if (e.key === ' ') {
+                this.speak(this.currentStep.onSuccess, true, 'es-ES', () => {
+                    setTimeout(() => {
+                        this.currentStepIndex++;
+                        this.loadNextStep();
+                    }, 500);
+                });
+            } else {
+                // Wrong key pressed - just speak the key name
+                const keyName = KEY_NAMES[e.key] || e.key;
+                this.speak(keyName, true, 'es-ES');
+            }
+            return;
         }
         
         // Handle Enter key for enter_practice step
