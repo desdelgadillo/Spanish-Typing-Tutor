@@ -470,10 +470,6 @@ class TypingTutor {
 
         window.speechSynthesis.speak(utterance);
     }
-        };
-
-        window.speechSynthesis.speak(utterance);
-    }
     
     // Update screen reader announcements
     announce(text) {
