@@ -327,9 +327,20 @@ class TypingTutor {
         this.setupEventListeners();
         this.loadAvailableVoices();
         
+        // Load voices (required for speech synthesis)
+        if (window.speechSynthesis) {
+            // Chrome loads voices asynchronously
+            window.speechSynthesis.onvoiceschanged = () => {
+                this.debug(`✅ Voices loaded: ${window.speechSynthesis.getVoices().length} available`);
+            };
+            // Trigger voice loading
+            window.speechSynthesis.getVoices();
+        }
+        
         // Audio requires a user gesture in modern browsers
         // We wait for the first click or keypress to speak welcome message
         const enableAudio = () => {
+            this.debug('🎤 Audio enabled by user interaction');
             this.speak(STRINGS.welcome, false, 'es-ES');
             
             // Hide the interaction overlay
@@ -342,6 +353,8 @@ class TypingTutor {
 
         document.addEventListener('click', enableAudio);
         document.addEventListener('keydown', enableAudio);
+        
+        this.debug('✅ App initialized and ready. Click anywhere to start.');
     }
     
     // Set up all event listeners
@@ -432,11 +445,13 @@ class TypingTutor {
     // Use browser's built-in Speech Synthesis with best available voices
     browserSpeak(text, lang, onEnd) {
         if (!window.speechSynthesis) {
+            this.debug('❌ Speech synthesis not supported in this browser.');
             console.error('Speech synthesis not supported in this browser.');
             if (onEnd) onEnd();
             return;
         }
 
+        this.debug(`🔊 Speaking: "${text.substring(0, 50)}${text.length > 50 ? '...' : ''}" (${lang})`);
         console.log(`Using Browser TTS for: "${text}" (${lang})`);
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = lang;
@@ -445,6 +460,7 @@ class TypingTutor {
         
         // Get available voices and pick the best one for the language
         const voices = window.speechSynthesis.getVoices();
+        this.debug(`📢 Available voices: ${voices.length}`);
         let selectedVoice = null;
         
         if (lang === 'es-ES' || lang.startsWith('es')) {
