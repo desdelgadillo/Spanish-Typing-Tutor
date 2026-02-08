@@ -654,16 +654,16 @@ class TypingTutor {
                 // Wait for Space key
                 this.elements.targetText.textContent = step.text;
                 this.elements.userInput.disabled = false;
-                this.speak(step.text, true, 'es-ES');
                 this.elements.userInput.focus();
+                this.speak(step.text, true, 'es-ES');
                 break;
                 
             case 'enter_practice':
                 // Wait for Enter key
                 this.elements.targetText.textContent = step.text;
                 this.elements.userInput.disabled = false;
-                this.speak(step.text, true, 'es-ES');
                 this.elements.userInput.focus();
+                this.speak(step.text, true, 'es-ES');
                 break;
                 
             case 'letter':
@@ -671,8 +671,8 @@ class TypingTutor {
                 this.currentExpected = step.key.toLowerCase();
                 this.elements.targetText.textContent = step.key.toUpperCase();
                 this.elements.userInput.disabled = false;
-                this.speak(step.text, true, 'es-ES');
                 this.elements.userInput.focus();
+                this.speak(step.text, true, 'es-ES');
                 break;
                 
             case 'word':
@@ -680,8 +680,8 @@ class TypingTutor {
                 this.currentExpected = step.word.toLowerCase();
                 this.elements.targetText.textContent = step.word;
                 this.elements.userInput.disabled = false;
-                this.speak(step.text, true, 'es-ES');
                 this.elements.userInput.focus();
+                this.speak(step.text, true, 'es-ES');
                 break;
         }
     }
@@ -736,7 +736,7 @@ class TypingTutor {
     
     // Handle keydown events
     handleKeydown(e) {
-        // Handle Space key when waiting for next lesson
+        // Handle Space key when waiting for next lesson (between lessons)
         if (this.waitingForNextLesson && e.key === ' ') {
             e.preventDefault();
             this.waitingForNextLesson = false;
@@ -748,7 +748,19 @@ class TypingTutor {
         
         if (!this.currentStep) return;
         
-        // Handle Space key
+        // Handle Space key for space_practice step (must come before letter/word check)
+        if (this.currentStep.type === 'space_practice' && e.key === ' ') {
+            e.preventDefault();
+            this.speak(this.currentStep.onSuccess, true, 'es-ES', () => {
+                setTimeout(() => {
+                    this.currentStepIndex++;
+                    this.loadNextStep();
+                }, 500);
+            });
+            return;
+        }
+        
+        // Handle Space key for letter/word steps
         if (e.key === ' ' && (this.currentStep.type === 'letter' || this.currentStep.type === 'word')) {
             const now = Date.now();
             const timeSinceLastSpace = now - this.lastSpaceTime;
@@ -768,28 +780,9 @@ class TypingTutor {
             return;
         }
         
-        // Interrupt current speech on any keypress
+        // Interrupt current speech on any keypress (except space for space_practice)
         if (window.speechSynthesis && window.speechSynthesis.speaking) {
             window.speechSynthesis.cancel();
-        }
-        
-        // Handle Space key for space_practice step
-        if (this.currentStep.type === 'space_practice') {
-            e.preventDefault();
-            
-            if (e.key === ' ') {
-                this.speak(this.currentStep.onSuccess, true, 'es-ES', () => {
-                    setTimeout(() => {
-                        this.currentStepIndex++;
-                        this.loadNextStep();
-                    }, 500);
-                });
-            } else {
-                // Wrong key pressed - just speak the key name
-                const keyName = KEY_NAMES[e.key] || e.key;
-                this.speak(keyName, true, 'es-ES');
-            }
-            return;
         }
         
         // Handle Enter key for enter_practice step
@@ -853,7 +846,6 @@ class TypingTutor {
     // Complete the current lesson
     completeLesson() {
         this.isLessonActive = false;
-        this.elements.userInput.disabled = true;
         this.elements.startBtn.disabled = false;
         this.elements.repeatBtn.disabled = true;
         this.elements.skipBtn.disabled = true;
@@ -868,11 +860,14 @@ class TypingTutor {
                     
                     // Enable space bar to start next lesson
                     this.waitingForNextLesson = true;
+                    this.elements.userInput.disabled = false;
+                    this.elements.userInput.focus();
                 }, 500);
             });
         } else {
             this.speak(STRINGS.lessonComplete, true, 'es-ES');
             this.waitingForNextLesson = false;
+            this.elements.userInput.disabled = true;
         }
         
         this.currentStepIndex = 0;
