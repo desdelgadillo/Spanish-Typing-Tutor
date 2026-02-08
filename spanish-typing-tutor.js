@@ -130,8 +130,6 @@ const LESSONS = [
                 meaning: "como",
                 text: "Escribe la palabra as, que significa como. A, S."
             }
-                text: "Escribe la palabra as, que significa como."
-            }
         ]
     },
     // LESSON 2: Home Row Right Hand
