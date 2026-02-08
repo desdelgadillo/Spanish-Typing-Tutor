@@ -19,7 +19,7 @@ A fully accessible typing tutor application designed specifically for blind user
 
 ```
 spanish-typing-tutor/
-├── spanish-typing-tutor.html       # Main HTML structure
+├── index.html                      # Main HTML structure
 ├── spanish-typing-tutor.js         # Frontend application logic
 ├── server.js                        # Express.js backend for Gemini TTS
 ├── package.json                     # Node.js dependencies
@@ -175,7 +175,7 @@ npm start
 ## 📚 Setup Guides
 
 ### For Web Speech API Only (No Setup)
-Just open `spanish-typing-tutor.html` in a browser. No installation or configuration needed.
+Just open `index.html` in a browser. No installation or configuration needed.
 
 ### For Google Cloud TTS
 See [VERTEX_AI_SETUP.md](VERTEX_AI_SETUP.md) for:
@@ -221,7 +221,7 @@ The UI is fully in Spanish for native Spanish speakers. To modify content:
 
 1. Edit the `STRINGS` object in `spanish-typing-tutor.js`
 2. Modify the `LESSONS` array for lesson content
-3. Update HTML static text in `spanish-typing-tutor.html`
+3. Update HTML static text in `index.html`
 
 ## 🐛 Troubleshooting
 
