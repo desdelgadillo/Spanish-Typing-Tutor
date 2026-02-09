@@ -12,6 +12,7 @@ const STRINGS = {
     nextWord: "Siguiente palabra.",
     lessonComplete: "¡Lección completa! ¡Excelente trabajo!",
     pressStart: "Presiona Iniciar para comenzar",
+    repeatHint: "Presiona dos veces la barra espaciadora para repetir esta explicación.",
     
     // Button labels
     startLesson: "Iniciar Lección",
@@ -161,9 +162,9 @@ const LESSONS = [
             {
                 type: "letter",
                 key: "l",
-                context: "lake",
+                context: "lago",
                 contextES: "lago",
-                text: "Escribe la letra L, como en lake."
+                text: "Escribe la letra L, como en lago."
             },
             {
                 type: "instruction",
@@ -201,37 +202,37 @@ const LESSONS = [
         steps: [
             {
                 type: "instruction",
-                text: "¡Excelente progreso! Ahora conoces todas las letras de la fila base. En esta lección, vamos a practicar más palabras para desarrollar tu memoria muscular. Recuerda mantener tus dedos en la posición base entre cada palabra."
+                text: "¡Excelente progreso! Ahora conoces las letras de la fila base que practicaremos por ahora. En esta lección, vamos a practicar más palabras para desarrollar tu memoria muscular. Recuerda mantener tus dedos en la posición base entre cada palabra."
             },
             {
                 type: "word",
-                word: "ask",
-                meaning: "preguntar (ask)",
-                text: "Escribe la palabra ask, que significa preguntar. A, S, K."
+                word: "faja",
+                meaning: "faja",
+                text: "Escribe la palabra en español: faja. F, A, J, A."
             },
             {
                 type: "word",
-                word: "flask",
-                meaning: "matraz (flask)",
-                text: "Escribe la palabra flask, que significa matraz. F, L, A, S, K."
+                word: "laja",
+                meaning: "laja",
+                text: "Escribe la palabra en español: laja. L, A, J, A."
             },
             {
                 type: "word",
-                word: "falls",
-                meaning: "cae (falls)",
-                text: "Escribe la palabra falls, que significa cae. F, A, L, L, S."
+                word: "jalas",
+                meaning: "jalas",
+                text: "Escribe la palabra en español: jalas. J, A, L, A, S."
             },
             {
                 type: "word",
-                word: "salsa",
-                meaning: "salsa",
-                text: "Escribe la palabra en español: salsa. S, A, L, S, A."
+                word: "fajas",
+                meaning: "fajas",
+                text: "Escribe la palabra en español: fajas. F, A, J, A, S."
             },
             {
                 type: "word",
-                word: "salsas",
-                meaning: "salsas",
-                text: "Escribe la palabra en español: salsas. S, A, L, S, A, S."
+                word: "faldas",
+                meaning: "faldas",
+                text: "Escribe la palabra en español: faldas. F, A, L, D, A, S."
             }
         ]
     },
@@ -241,7 +242,7 @@ const LESSONS = [
         steps: [
             {
                 type: "instruction",
-                text: "¡Felicidades por tu progreso! Ahora vamos a agregar dos letras más de la fila base: G y H. La G se presiona con tu dedo índice izquierdo, justo a la izquierda de la F. La H se presiona con tu dedo índice derecho, justo a la izquierda de la J. Practiquemos."
+                text: "¡Felicidades por tu progreso! Ahora vamos a agregar dos letras más de la fila base: G y H. La G se presiona con tu dedo índice izquierdo, justo a la derecha de la F. La H se presiona con tu dedo índice derecho, justo a la izquierda de la J. Practiquemos."
             },
             {
                 type: "letter",
@@ -420,6 +421,505 @@ const LESSONS = [
                 text: "Escribe la palabra en español: sudar. S, U, D, A, R."
             }
         ]
+    },
+    // LESSON 7: Adding E and I
+    {
+        title: "Lección 7: Letras E e I",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos las letras E e I. La E está arriba de la D. La I está arriba de la K. Practiquemos primero las letras."
+            },
+            {
+                type: "letter",
+                key: "e",
+                context: "seda",
+                contextES: "seda",
+                text: "Escribe la letra E, como en seda."
+            },
+            {
+                type: "letter",
+                key: "i",
+                context: "isla",
+                contextES: "isla",
+                text: "Escribe la letra I, como en isla."
+            },
+            {
+                type: "instruction",
+                text: "Excelente. Ahora escribiremos palabras con E e I."
+            },
+            {
+                type: "word",
+                word: "seda",
+                meaning: "seda",
+                text: "Escribe la palabra en español: seda. S, E, D, A."
+            },
+            {
+                type: "word",
+                word: "dije",
+                meaning: "dije",
+                text: "Escribe la palabra en español: dije. D, I, J, E."
+            },
+            {
+                type: "word",
+                word: "fiel",
+                meaning: "fiel",
+                text: "Escribe la palabra en español: fiel. F, I, E, L."
+            },
+            {
+                type: "word",
+                word: "rie",
+                meaning: "rie",
+                text: "Escribe la palabra en español: rie. R, I, E."
+            }
+        ]
+    },
+    // LESSON 8: Adding O
+    {
+        title: "Lección 8: Letra O",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos la letra O. La O está arriba de la L. Practiquemos primero la letra."
+            },
+            {
+                type: "letter",
+                key: "o",
+                context: "oro",
+                contextES: "oro",
+                text: "Escribe la letra O, como en oro."
+            },
+            {
+                type: "instruction",
+                text: "Excelente. Ahora escribiremos palabras con O."
+            },
+            {
+                type: "word",
+                word: "oro",
+                meaning: "oro",
+                text: "Escribe la palabra en español: oro. O, R, O."
+            },
+            {
+                type: "word",
+                word: "ojo",
+                meaning: "ojo",
+                text: "Escribe la palabra en español: ojo. O, J, O."
+            },
+            {
+                type: "word",
+                word: "lodo",
+                meaning: "lodo",
+                text: "Escribe la palabra en español: lodo. L, O, D, O."
+            },
+            {
+                type: "word",
+                word: "solo",
+                meaning: "solo",
+                text: "Escribe la palabra en español: solo. S, O, L, O."
+            }
+        ]
+    },
+    // LESSON 9: Adding T and Y
+    {
+        title: "Lección 9: Letras T y Y",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos las letras T y Y. La T está arriba de la F. La Y está arriba de la H. Practiquemos primero las letras."
+            },
+            {
+                type: "letter",
+                key: "t",
+                context: "tasa",
+                contextES: "tasa",
+                text: "Escribe la letra T, como en tasa."
+            },
+            {
+                type: "letter",
+                key: "y",
+                context: "yeti",
+                contextES: "yeti",
+                text: "Escribe la letra Y, como en yeti."
+            },
+            {
+                type: "instruction",
+                text: "Muy bien. Ahora escribiremos palabras con T y Y."
+            },
+            {
+                type: "word",
+                word: "tasa",
+                meaning: "tasa",
+                text: "Escribe la palabra en español: tasa. T, A, S, A."
+            },
+            {
+                type: "word",
+                word: "tira",
+                meaning: "tira",
+                text: "Escribe la palabra en español: tira. T, I, R, A."
+            },
+            {
+                type: "word",
+                word: "yeti",
+                meaning: "yeti",
+                text: "Escribe la palabra en español: yeti. Y, E, T, I."
+            },
+            {
+                type: "word",
+                word: "yate",
+                meaning: "yate",
+                text: "Escribe la palabra en español: yate. Y, A, T, E."
+            }
+        ]
+    },
+    // LESSON 10: Adding W and P
+    {
+        title: "Lección 10: Letras W y P",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos las letras W y P. La W está arriba de la S. La P está arriba del punto y coma. Practiquemos primero las letras."
+            },
+            {
+                type: "letter",
+                key: "w",
+                context: "web",
+                contextES: "web",
+                text: "Escribe la letra W, como en web."
+            },
+            {
+                type: "letter",
+                key: "p",
+                context: "papa",
+                contextES: "papa",
+                text: "Escribe la letra P, como en papa."
+            },
+            {
+                type: "instruction",
+                text: "Muy bien. Ahora escribiremos palabras con W y P."
+            },
+            {
+                type: "word",
+                word: "web",
+                meaning: "web",
+                text: "Escribe la palabra en español: web. W, E, B."
+            },
+            {
+                type: "word",
+                word: "wifi",
+                meaning: "wifi",
+                text: "Escribe la palabra en español: wifi. W, I, F, I."
+            },
+            {
+                type: "word",
+                word: "papa",
+                meaning: "papa",
+                text: "Escribe la palabra en español: papa. P, A, P, A."
+            },
+            {
+                type: "word",
+                word: "pila",
+                meaning: "pila",
+                text: "Escribe la palabra en español: pila. P, I, L, A."
+            }
+        ]
+    },
+    // LESSON 11: Adding Q
+    {
+        title: "Lección 11: Letra Q",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos la letra Q. La Q está arriba de la A. Recuerda que casi siempre va con U. Practiquemos primero la letra."
+            },
+            {
+                type: "letter",
+                key: "q",
+                context: "que",
+                contextES: "que",
+                text: "Escribe la letra Q, como en que."
+            },
+            {
+                type: "instruction",
+                text: "Excelente. Ahora escribiremos palabras con Q."
+            },
+            {
+                type: "word",
+                word: "que",
+                meaning: "que",
+                text: "Escribe la palabra en español: que. Q, U, E."
+            },
+            {
+                type: "word",
+                word: "aqui",
+                meaning: "aqui",
+                text: "Escribe la palabra en español: aqui. A, Q, U, I."
+            },
+            {
+                type: "word",
+                word: "quitar",
+                meaning: "quitar",
+                text: "Escribe la palabra en español: quitar. Q, U, I, T, A, R."
+            },
+            {
+                type: "word",
+                word: "quita",
+                meaning: "quita",
+                text: "Escribe la palabra en español: quita. Q, U, I, T, A."
+            }
+        ]
+    },
+    // LESSON 12: Adding V and N
+    {
+        title: "Lección 12: Letras V y N",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos las letras V y N. La V está abajo de la F. La N está abajo de la J. Practiquemos primero las letras."
+            },
+            {
+                type: "letter",
+                key: "v",
+                context: "vino",
+                contextES: "vino",
+                text: "Escribe la letra V, como en vino."
+            },
+            {
+                type: "letter",
+                key: "n",
+                context: "nave",
+                contextES: "nave",
+                text: "Escribe la letra N, como en nave."
+            },
+            {
+                type: "instruction",
+                text: "Muy bien. Ahora escribiremos palabras con V y N."
+            },
+            {
+                type: "word",
+                word: "vino",
+                meaning: "vino",
+                text: "Escribe la palabra en español: vino. V, I, N, O."
+            },
+            {
+                type: "word",
+                word: "nave",
+                meaning: "nave",
+                text: "Escribe la palabra en español: nave. N, A, V, E."
+            },
+            {
+                type: "word",
+                word: "vive",
+                meaning: "vive",
+                text: "Escribe la palabra en español: vive. V, I, V, E."
+            },
+            {
+                type: "word",
+                word: "nieve",
+                meaning: "nieve",
+                text: "Escribe la palabra en español: nieve. N, I, E, V, E."
+            }
+        ]
+    },
+    // LESSON 13: Adding Z and M
+    {
+        title: "Lección 13: Letras Z y M",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos las letras Z y M. La Z está abajo de la A. La M está abajo de la K. Practiquemos primero las letras."
+            },
+            {
+                type: "letter",
+                key: "z",
+                context: "zeta",
+                contextES: "zeta",
+                text: "Escribe la letra Z, como en zeta."
+            },
+            {
+                type: "letter",
+                key: "m",
+                context: "mesa",
+                contextES: "mesa",
+                text: "Escribe la letra M, como en mesa."
+            },
+            {
+                type: "instruction",
+                text: "Excelente. Ahora escribiremos palabras con Z y M."
+            },
+            {
+                type: "word",
+                word: "zeta",
+                meaning: "zeta",
+                text: "Escribe la palabra en español: zeta. Z, E, T, A."
+            },
+            {
+                type: "word",
+                word: "mesa",
+                meaning: "mesa",
+                text: "Escribe la palabra en español: mesa. M, E, S, A."
+            },
+            {
+                type: "word",
+                word: "misa",
+                meaning: "misa",
+                text: "Escribe la palabra en español: misa. M, I, S, A."
+            },
+            {
+                type: "word",
+                word: "zumo",
+                meaning: "zumo",
+                text: "Escribe la palabra en español: zumo. Z, U, M, O."
+            }
+        ]
+    },
+    // LESSON 14: Adding X
+    {
+        title: "Lección 14: Letra X",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos la letra X. La X está abajo de la S. Practiquemos primero la letra."
+            },
+            {
+                type: "letter",
+                key: "x",
+                context: "taxi",
+                contextES: "taxi",
+                text: "Escribe la letra X, como en taxi."
+            },
+            {
+                type: "instruction",
+                text: "Excelente. Ahora escribiremos palabras con X."
+            },
+            {
+                type: "word",
+                word: "taxi",
+                meaning: "taxi",
+                text: "Escribe la palabra en español: taxi. T, A, X, I."
+            },
+            {
+                type: "word",
+                word: "exito",
+                meaning: "exito",
+                text: "Escribe la palabra en español: exito. E, X, I, T, O."
+            },
+            {
+                type: "word",
+                word: "texto",
+                meaning: "texto",
+                text: "Escribe la palabra en español: texto. T, E, X, T, O."
+            },
+            {
+                type: "word",
+                word: "extra",
+                meaning: "extra",
+                text: "Escribe la palabra en español: extra. E, X, T, R, A."
+            }
+        ]
+    },
+    // LESSON 15: Adding N and C
+    {
+        title: "Lección 15: Letras N y C",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos la letra C y practicaremos de nuevo la N. La C está abajo de la D. Practiquemos primero las letras."
+            },
+            {
+                type: "letter",
+                key: "n",
+                context: "nido",
+                contextES: "nido",
+                text: "Escribe la letra N, como en nido."
+            },
+            {
+                type: "letter",
+                key: "c",
+                context: "casa",
+                contextES: "casa",
+                text: "Escribe la letra C, como en casa."
+            },
+            {
+                type: "instruction",
+                text: "Muy bien. Ahora escribiremos palabras con N y C."
+            },
+            {
+                type: "word",
+                word: "casa",
+                meaning: "casa",
+                text: "Escribe la palabra en español: casa. C, A, S, A."
+            },
+            {
+                type: "word",
+                word: "cena",
+                meaning: "cena",
+                text: "Escribe la palabra en español: cena. C, E, N, A."
+            },
+            {
+                type: "word",
+                word: "cita",
+                meaning: "cita",
+                text: "Escribe la palabra en español: cita. C, I, T, A."
+            },
+            {
+                type: "word",
+                word: "cuna",
+                meaning: "cuna",
+                text: "Escribe la palabra en español: cuna. C, U, N, A."
+            }
+        ]
+    },
+    // LESSON 16: Adding V and B
+    {
+        title: "Lección 16: Letras V y B",
+        steps: [
+            {
+                type: "instruction",
+                text: "Ahora aprenderemos la letra B y practicaremos de nuevo la V. La B está abajo de la G. Practiquemos primero las letras."
+            },
+            {
+                type: "letter",
+                key: "v",
+                context: "vaca",
+                contextES: "vaca",
+                text: "Escribe la letra V, como en vaca."
+            },
+            {
+                type: "letter",
+                key: "b",
+                context: "bebe",
+                contextES: "bebe",
+                text: "Escribe la letra B, como en bebe."
+            },
+            {
+                type: "instruction",
+                text: "Excelente. Ahora escribiremos palabras con V y B."
+            },
+            {
+                type: "word",
+                word: "vaca",
+                meaning: "vaca",
+                text: "Escribe la palabra en español: vaca. V, A, C, A."
+            },
+            {
+                type: "word",
+                word: "baca",
+                meaning: "baca",
+                text: "Escribe la palabra en español: baca. B, A, C, A."
+            },
+            {
+                type: "word",
+                word: "bebe",
+                meaning: "bebe",
+                text: "Escribe la palabra en español: bebe. B, E, B, E."
+            },
+            {
+                type: "word",
+                word: "viva",
+                meaning: "viva",
+                text: "Escribe la palabra en español: viva. V, I, V, A."
+            }
+        ]
     }
 ];
 
@@ -460,6 +960,16 @@ class TypingTutor {
         this.isSpeaking = false;
         this.lastSpaceTime = 0;
         this.selectedVoiceName = null;
+        this.lastSpokenErrorIndex = -1;
+        this.lastSpokenErrorChar = null;
+        this.lastSpokenExpectedChar = null;
+        this.lastSpokenCorrectIndex = -1;
+        this.isCheckingAnswer = false;
+        this.justCompletedExpected = false;
+        this.instructionToken = 0;
+        this.lastInstructionText = '';
+        this.spaceSequenceCount = 0;
+        this.lastSpaceSequenceTime = 0;
 
         this.speechRate = 1.0;
         this.speechVolume = 1.0;
@@ -612,7 +1122,8 @@ class TypingTutor {
         const request = {
             text,
             lang,
-            interrupt
+            interrupt,
+            callback
         };
 
         if (interrupt) {
@@ -620,20 +1131,20 @@ class TypingTutor {
             // Cancel any currently speaking utterance
             if (window.speechSynthesis && window.speechSynthesis.speaking) {
                 window.speechSynthesis.cancel();
+                this.isSpeaking = false;
             }
         } else {
             this.audioQueue.push(request);
         }
 
         if (!this.isSpeaking) {
-            this.processAudioQueue(callback);
+            this.processAudioQueue();
         }
     }
 
-    async processAudioQueue(callback) {
+    async processAudioQueue() {
         if (this.audioQueue.length === 0) {
             this.isSpeaking = false;
-            if (callback) callback();
             return;
         }
 
@@ -644,7 +1155,10 @@ class TypingTutor {
         
         // Use browser's high-quality voices directly
         this.browserSpeak(request.text, langCode, () => {
-            this.processAudioQueue(callback);
+            if (request.callback) {
+                request.callback();
+            }
+            this.processAudioQueue();
         });
     }
 
@@ -750,18 +1264,36 @@ class TypingTutor {
     processStep(step) {
         this.elements.userInput.value = '';
         this.elements.userInput.style.borderColor = '#4a4a4a';
+        this.lastSpaceTime = 0;
+        this.lastSpokenErrorIndex = -1;
+        this.lastSpokenErrorChar = null;
+        this.lastSpokenExpectedChar = null;
+        this.lastSpokenCorrectIndex = -1;
+        this.elements.userInput.readOnly = true;
+        this.isCheckingAnswer = false;
+        this.spaceSequenceCount = 0;
+        this.lastSpaceSequenceTime = 0;
         
         switch(step.type) {
             case 'instruction':
                 // Just an instruction to read - no input needed
-                this.elements.targetText.textContent = 'Escuchando...';
+                this.elements.targetText.textContent = 'Escuchando... (Doble espacio para repetir)';
                 this.elements.userInput.disabled = false;
                 this.elements.userInput.focus();
+
+                const instructionToken = ++this.instructionToken;
+                this.lastInstructionText = step.text;
                 
                 // Speak with callback to auto-advance
-                this.speak(step.text, true, 'es-ES', () => {
+                this.speak(`${step.text} ${STRINGS.repeatHint}`, true, 'es-ES', () => {
+                    if (instructionToken !== this.instructionToken) {
+                        return;
+                    }
                     // Wait a bit after speech finishes, then advance
                     setTimeout(() => {
+                        if (instructionToken !== this.instructionToken) {
+                            return;
+                        }
                         this.currentStepIndex++;
                         this.loadNextStep();
                     }, 1000);
@@ -789,6 +1321,7 @@ class TypingTutor {
                 this.currentExpected = step.key.toLowerCase();
                 this.elements.targetText.textContent = step.key.toUpperCase();
                 this.elements.userInput.disabled = false;
+                this.elements.userInput.readOnly = false;
                 this.speak(step.text, true, 'es-ES');
                 this.elements.userInput.focus();
                 break;
@@ -798,6 +1331,7 @@ class TypingTutor {
                 this.currentExpected = step.word.toLowerCase();
                 this.elements.targetText.textContent = step.word;
                 this.elements.userInput.disabled = false;
+                this.elements.userInput.readOnly = false;
                 this.speak(step.text, true, 'es-ES');
                 this.elements.userInput.focus();
                 break;
@@ -826,25 +1360,67 @@ class TypingTutor {
     // Handle input as user types
     handleInput(e) {
         if (!this.currentStep) return;
+        if (this.isCheckingAnswer) return;
         
         const userText = e.target.value.toLowerCase();
+        const expectedText = this.currentExpected || '';
         
         // Provide character-by-character feedback for letters and words
         if (this.currentStep.type === 'letter' || this.currentStep.type === 'word') {
-            if (userText.length > 0 && this.currentExpected) {
+            if (userText.length <= this.lastSpokenErrorIndex) {
+                this.lastSpokenErrorIndex = -1;
+                this.lastSpokenErrorChar = null;
+                this.lastSpokenExpectedChar = null;
+            }
+            if (userText.length <= this.lastSpokenCorrectIndex) {
+                this.lastSpokenCorrectIndex = -1;
+            }
+
+            if (userText.length > 0 && expectedText) {
                 const lastChar = userText[userText.length - 1];
-                const expectedChar = this.currentExpected[userText.length - 1];
-                
-                if (lastChar === expectedChar) {
+                const expectedChar = expectedText[userText.length - 1];
+                const expectedPrefix = expectedText.slice(0, userText.length);
+                const isPrefixMatch = userText === expectedPrefix;
+
+                if (isPrefixMatch) {
                     e.target.style.borderColor = '#00ff00';
                     
                     // Check if they've completed the entire expected text
-                    if (userText === this.currentExpected) {
+                    if (userText === expectedText) {
                         // Automatically submit when complete
-                        setTimeout(() => this.checkAnswer(), 100);
+                        this.isCheckingAnswer = true;
+                        this.justCompletedExpected = true;
+                        this.elements.userInput.disabled = true;
+                        this.checkAnswer();
+                        return;
                     }
                 } else {
                     e.target.style.borderColor = '#ff0000';
+
+                    if (
+                        this.lastSpokenErrorIndex !== userText.length - 1 ||
+                        this.lastSpokenErrorChar !== lastChar ||
+                        this.lastSpokenExpectedChar !== expectedChar
+                    ) {
+                        this.lastSpokenErrorIndex = userText.length - 1;
+                        this.lastSpokenErrorChar = lastChar;
+                        this.lastSpokenExpectedChar = expectedChar;
+
+                        const feedback = expectedChar
+                            ? `${STRINGS.characterIncorrect} ${expectedChar.toUpperCase()}. ${STRINGS.youTyped} ${lastChar.toUpperCase()}.`
+                            : `${STRINGS.characterIncorrect} ${expectedText.toUpperCase()}. ${STRINGS.youTyped} ${lastChar.toUpperCase()}.`;
+
+                        const correctedText = expectedText.length === 1
+                            ? ''
+                            : userText.slice(0, -1);
+                        this.elements.userInput.value = correctedText;
+                        this.elements.userInput.style.borderColor = '#4a4a4a';
+                        this.lastSpokenErrorIndex = -1;
+                        this.lastSpokenErrorChar = null;
+                        this.lastSpokenExpectedChar = null;
+                        this.elements.userInput.focus();
+                        this.speak(feedback, true, 'es-ES');
+                    }
                 }
             } else {
                 e.target.style.borderColor = '#4a4a4a';
@@ -854,6 +1430,34 @@ class TypingTutor {
     
     // Handle keydown events
     handleKeydown(e) {
+        if (e.key !== ' ') {
+            this.spaceSequenceCount = 0;
+            this.lastSpaceSequenceTime = 0;
+        }
+
+        if (e.key === ' ') {
+            const now = Date.now();
+            const timeSinceLastSpace = now - this.lastSpaceSequenceTime;
+
+            if (timeSinceLastSpace < 600) {
+                this.spaceSequenceCount += 1;
+            } else {
+                this.spaceSequenceCount = 1;
+            }
+
+            this.lastSpaceSequenceTime = now;
+
+            if (this.spaceSequenceCount >= 3) {
+                e.preventDefault();
+                this.spaceSequenceCount = 0;
+                this.lastSpaceSequenceTime = 0;
+
+                if (this.lastInstructionText) {
+                    this.speak(this.lastInstructionText, true, 'es-ES');
+                }
+                return;
+            }
+        }
         // Handle Space key when waiting for next lesson
         if (this.waitingForNextLesson && e.key === ' ') {
             e.preventDefault();
@@ -866,17 +1470,58 @@ class TypingTutor {
         
         if (!this.currentStep) return;
 
-        // Allow space to skip instruction steps
-        if (this.currentStep.type === 'instruction' && e.key === ' ') {
-            e.preventDefault();
-            if (window.speechSynthesis && window.speechSynthesis.speaking) {
-                window.speechSynthesis.cancel();
+        // Allow space to skip or repeat instruction steps
+        if (this.currentStep.type === 'instruction') {
+            if (e.key === ' ') {
+                const now = Date.now();
+                const timeSinceLastSpace = now - this.lastSpaceTime;
+                const lesson = LESSONS[this.currentLessonIndex];
+                const nextStep = lesson?.steps?.[this.currentStepIndex + 1];
+                const isNextSpacePractice = nextStep && nextStep.type === 'space_practice';
+
+                e.preventDefault();
+                if (timeSinceLastSpace < 500) {
+                    this.repeatInstructions();
+                    this.lastSpaceTime = 0;
+                    return;
+                }
+
+                if (isNextSpacePractice) {
+                    this.lastSpaceTime = now;
+                    return;
+                }
+
+                this.lastSpaceTime = now;
+                this.instructionToken++;
+                if (window.speechSynthesis && window.speechSynthesis.speaking) {
+                    window.speechSynthesis.cancel();
+                }
+                this.currentStepIndex++;
+                this.loadNextStep();
             }
-            this.currentStepIndex++;
-            this.loadNextStep();
             return;
         }
-        
+
+        // Speak correct letters as they are typed
+        if (this.currentStep.type === 'letter' || this.currentStep.type === 'word') {
+            const expectedText = this.currentExpected || '';
+            const isPrintable = e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey;
+
+            if (isPrintable && e.key !== ' ' && !this.isCheckingAnswer) {
+                const keyLower = e.key.toLowerCase();
+                const currentText = this.elements.userInput.value.toLowerCase();
+                const expectedChar = expectedText[currentText.length];
+
+                if (expectedChar && keyLower === expectedChar) {
+                    if (this.lastSpokenCorrectIndex !== currentText.length) {
+                        this.lastSpokenCorrectIndex = currentText.length;
+                        const spokenChar = keyLower.toUpperCase();
+                        this.speak(`${spokenChar}.`, true, 'es-ES');
+                    }
+                }
+            }
+        }
+
         // Handle Space key
         if (e.key === ' ' && (this.currentStep.type === 'letter' || this.currentStep.type === 'word')) {
             const now = Date.now();
@@ -890,15 +1535,24 @@ class TypingTutor {
                 return;
             }
             
-            // Single space - submit answer
+            // Single space - submit answer (only if there's input)
             this.lastSpaceTime = now;
             e.preventDefault();
+            if (this.elements.userInput.value.trim() === '') {
+                return;
+            }
             this.checkAnswer();
             return;
         }
         
-        // Interrupt current speech on any keypress
-        if (window.speechSynthesis && window.speechSynthesis.speaking) {
+        // Interrupt current speech only for non-typing steps
+        if (
+            (this.currentStep.type === 'instruction' ||
+                this.currentStep.type === 'space_practice' ||
+                this.currentStep.type === 'enter_practice') &&
+            window.speechSynthesis &&
+            window.speechSynthesis.speaking
+        ) {
             window.speechSynthesis.cancel();
         }
         
@@ -952,12 +1606,15 @@ class TypingTutor {
             this.correctCount++;
             this.wordsCompleted++;
             this.updateStats();
-            
-            this.speak(STRINGS.correct, true, 'es-ES', () => {
+
+            const interruptSpeech = !this.justCompletedExpected;
+            this.justCompletedExpected = false;
+            this.speak(STRINGS.correct, interruptSpeech, 'es-ES', () => {
                 // Move to next step after speech finishes
                 setTimeout(() => {
                     this.currentStepIndex++;
                     this.loadNextStep();
+                    this.isCheckingAnswer = false;
                 }, 500);
             });
         } else {
@@ -976,6 +1633,10 @@ class TypingTutor {
             this.speak(feedback, true, 'es-ES');
             this.elements.userInput.value = '';
             this.elements.userInput.style.borderColor = '#4a4a4a';
+            this.elements.userInput.disabled = false;
+            this.elements.userInput.readOnly = false;
+            this.elements.userInput.focus();
+            this.isCheckingAnswer = false;
         }
     }
     
