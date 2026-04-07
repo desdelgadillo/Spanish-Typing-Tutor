@@ -4,7 +4,6 @@
 const STRINGS = {
     // Instructions and feedback
     welcome: "Bienvenido al Tutor de Mecanografía en Inglés. Presiona el botón Iniciar Lección para comenzar.",
-    instructions: "Escribe la siguiente palabra:",
     means: "que significa",
     correct: "¡Correcto! Bien hecho.",
     incorrect: "Incorrecto. La palabra correcta era:",
@@ -18,38 +17,19 @@ const STRINGS = {
     startLesson: "Iniciar Lección",
     repeatInstructions: "Repetir Instrucciones",
     skipWord: "Saltar Palabra",
-    settings: "Configuración",
-    
-    // UI labels
-    currentLevel: "Nivel Actual",
-    lesson: "Lección",
-    beginner: "Principiante - Fila Base",
-    intermediate: "Intermedio - Todas las Letras",
-    advanced: "Avanzado - Palabras Complejas",
-    
-    // Stats
-    correct_stat: "Correctas",
-    incorrect_stat: "Incorrectas",
-    accuracy: "Precisión",
-    wordsCompleted: "Palabras Completadas",
+    lessonSelect: "Seleccionar Lección",
     
     // Character feedback
-    characterCorrect: "Carácter correcto:",
     characterIncorrect: "Carácter incorrecto. Se esperaba:",
     youTyped: "Escribiste:",
-    
-    // Settings
-    speechRate: "Velocidad de voz",
-    speechVolume: "Volumen de voz",
-    
-    // Error messages
-    speechNotSupported: "Lo sentimos, tu navegador no admite síntesis de voz. Por favor usa un navegador moderno como Chrome, Firefox o Edge.",
+    useShift: "Debes usar",
+    leftShift: "Mayúsculas izquierda",
+    rightShift: "Mayúsculas derecha",
+    capsLockOff: "Desactiva Bloq Mayús para esta lección.",
+    expectedCapital: "Se esperaba la letra mayúscula",
     
     // Level up
-    levelUp: "¡Felicidades! ¡Has avanzado al siguiente nivel!",
-    
-    // Placeholder
-    typingPlaceholder: "Escribe aquí..."
+    levelUp: "¡Felicidades! ¡Has avanzado al siguiente nivel!"
 };
 
 // ============================================
@@ -923,6 +903,50 @@ const LESSONS = [
     }
 ];
 
+const SHIFT_KEY_NAMES = {
+    ShiftLeft: STRINGS.leftShift,
+    ShiftRight: STRINGS.rightShift
+};
+
+function createCapitalStep(letter, shiftCode) {
+    return {
+        type: "capital_letter",
+        key: letter,
+        keyCode: `Key${letter}`,
+        shiftCode,
+        shiftName: SHIFT_KEY_NAMES[shiftCode],
+        text: `Escribe la letra mayúscula ${letter} usando ${SHIFT_KEY_NAMES[shiftCode]}.`
+    };
+}
+
+function createCapitalLesson(title, intro, letters, shiftCode) {
+    return {
+        title,
+        steps: [
+            {
+                type: "instruction",
+                text: intro
+            },
+            ...letters.map(letter => createCapitalStep(letter, shiftCode))
+        ]
+    };
+}
+
+LESSONS.push(
+    createCapitalLesson(
+        "Mayúsculas - Letras de Mano Izquierda",
+        "Ahora practicaremos letras mayúsculas escritas con la mano izquierda. Debes mantener presionada la mayúsculas derecha mientras pulsas la letra indicada. No uses Bloq Mayús.",
+        ["Q", "W", "E", "R", "T", "A", "S", "D", "F", "G", "Z", "X", "C", "V", "B"],
+        "ShiftRight"
+    ),
+    createCapitalLesson(
+        "Mayúsculas - Letras de Mano Derecha",
+        "Ahora practicaremos letras mayúsculas escritas con la mano derecha. Debes mantener presionada la mayúsculas izquierda mientras pulsas la letra indicada. No uses Bloq Mayús.",
+        ["Y", "U", "I", "O", "P", "H", "J", "K", "L", "N", "M"],
+        "ShiftLeft"
+    )
+);
+
 // ============================================
 // KEY NAME TRANSLATIONS
 // ============================================
@@ -939,7 +963,9 @@ const KEY_NAMES = {
     'ArrowLeft': 'Flecha Izquierda',
     'ArrowRight': 'Flecha Derecha',
     'ArrowUp': 'Flecha Arriba',
-    'ArrowDown': 'Flecha Abajo'
+    'ArrowDown': 'Flecha Abajo',
+    'ShiftLeft': STRINGS.leftShift,
+    'ShiftRight': STRINGS.rightShift
 };
 
 // ============================================
@@ -955,6 +981,7 @@ class TypingTutor {
         this.wordsCompleted = 0;
         this.isLessonActive = false;
         this.waitingForNextLesson = false;
+        this.pressedShiftCodes = new Set();
         
         this.audioQueue = [];
         this.isSpeaking = false;
@@ -971,13 +998,11 @@ class TypingTutor {
         this.spaceSequenceCount = 0;
         this.lastSpaceSequenceTime = 0;
 
-        this.speechRate = 1.0;
-        this.speechVolume = 1.0;
-
         // DOM elements
         this.elements = {
             targetText: document.getElementById('targetText'),
             userInput: document.getElementById('userInput'),
+            lessonSelect: document.getElementById('lessonSelect'),
             startBtn: document.getElementById('startBtn'),
             repeatBtn: document.getElementById('repeatBtn'),
             skipBtn: document.getElementById('skipBtn'),
@@ -988,47 +1013,20 @@ class TypingTutor {
             incorrectCount: document.getElementById('incorrectCount'),
             accuracyRate: document.getElementById('accuracyRate'),
             wordsCompleted: document.getElementById('wordsCompleted'),
-            announcements: document.getElementById('announcements'),
-            debugLog: document.getElementById('debugLog')
+            announcements: document.getElementById('announcements')
         };
-        
-        this.debug('🚀 App initialized, loading voices...');
+
         this.init();
-    }
-    
-    // Debug logging function
-    debug(message) {
-        console.log(message);
-        if (this.elements.debugLog) {
-            const line = document.createElement('div');
-            line.className = 'debug-line';
-            if (message.includes('✅') || message.includes('Success')) {
-                line.className += ' debug-success';
-            } else if (message.includes('❌') || message.includes('Error')) {
-                line.className += ' debug-error';
-            } else {
-                line.className += ' debug-info';
-            }
-            line.textContent = message;
-            this.elements.debugLog.appendChild(line);
-            // Keep only last 20 messages
-            while (this.elements.debugLog.children.length > 20) {
-                this.elements.debugLog.removeChild(this.elements.debugLog.firstChild);
-            }
-        }
     }
     
     // Initialize the application
     init() {
         this.setupEventListeners();
+        this.populateLessonSelect();
         this.loadAvailableVoices();
         
         // Load voices (required for speech synthesis)
         if (window.speechSynthesis) {
-            // Chrome loads voices asynchronously
-            window.speechSynthesis.onvoiceschanged = () => {
-                this.debug(`✅ Voices loaded: ${window.speechSynthesis.getVoices().length} available`);
-            };
             // Trigger voice loading
             window.speechSynthesis.getVoices();
         }
@@ -1036,7 +1034,6 @@ class TypingTutor {
         // Audio requires a user gesture in modern browsers
         // We wait for the first click or keypress to speak welcome message
         const enableAudio = () => {
-            this.debug('🎤 Audio enabled by user interaction');
             this.speak(STRINGS.welcome, false, 'es-ES');
             
             // Hide the interaction overlay
@@ -1049,12 +1046,14 @@ class TypingTutor {
 
         document.addEventListener('click', enableAudio);
         document.addEventListener('keydown', enableAudio);
-        
-        this.debug('✅ App initialized and ready. Click anywhere to start.');
     }
     
     // Set up all event listeners
     setupEventListeners() {
+        this.elements.lessonSelect.addEventListener('change', (e) => {
+            this.selectLesson(Number(e.target.value));
+        });
+
         // Start button
         this.elements.startBtn.addEventListener('click', () => {
             this.startLesson();
@@ -1074,6 +1073,8 @@ class TypingTutor {
         // User input
         this.elements.userInput.addEventListener('input', (e) => this.handleInput(e));
         this.elements.userInput.addEventListener('keydown', (e) => this.handleKeydown(e));
+        this.elements.userInput.addEventListener('keyup', (e) => this.handleKeyup(e));
+        this.elements.userInput.addEventListener('blur', () => this.clearPressedModifiers());
         
         // Focus input when clicking on target text
         this.elements.targetText.addEventListener('click', () => {
@@ -1083,13 +1084,49 @@ class TypingTutor {
         });
     }
 
+    populateLessonSelect() {
+        this.elements.lessonSelect.innerHTML = '';
+
+        LESSONS.forEach((lesson, index) => {
+            const option = document.createElement('option');
+            option.value = String(index);
+            option.textContent = `${index + 1}. ${lesson.title}`;
+            this.elements.lessonSelect.appendChild(option);
+        });
+
+        this.elements.lessonSelect.value = String(this.currentLessonIndex);
+        this.updateLessonDisplay();
+    }
+
+    selectLesson(index) {
+        if (Number.isNaN(index) || index < 0 || index >= LESSONS.length) {
+            return;
+        }
+
+        this.currentLessonIndex = index;
+        this.waitingForNextLesson = false;
+        this.clearPressedModifiers();
+        this.updateLessonDisplay();
+
+        if (!this.isLessonActive) {
+            this.elements.targetText.textContent = STRINGS.pressStart;
+            this.elements.userInput.value = '';
+            this.elements.userInput.style.borderColor = '#4a4a4a';
+        }
+    }
+
+    updateLessonDisplay() {
+        const lesson = LESSONS[this.currentLessonIndex];
+        this.elements.currentLevel.textContent = lesson.title;
+        this.elements.currentLesson.textContent = this.currentLessonIndex + 1;
+        this.elements.lessonSelect.value = String(this.currentLessonIndex);
+    }
+
     // Load available voices
     async loadAvailableVoices() {
         const populateVoices = () => {
             const voices = window.speechSynthesis.getVoices();
             const spanishVoices = voices.filter(v => v.lang.startsWith('es'));
-            
-            this.debug(`✅ Loaded ${voices.length} voices (${spanishVoices.length} Spanish)`);
             
             if (spanishVoices.length > 0) {
                 this.elements.voiceSelect.innerHTML = '<option value="">Voz Automática</option>';
@@ -1112,7 +1149,6 @@ class TypingTutor {
     // Select a specific voice
     selectVoice(voiceName) {
         this.selectedVoiceName = voiceName || null;
-        this.debug(`🎤 Voice selected: ${voiceName || 'Automatic'}`);
     }
 
     // Text-to-speech function
@@ -1165,18 +1201,12 @@ class TypingTutor {
     // Use browser's built-in Speech Synthesis with best available voices
     browserSpeak(text, lang, onEnd) {
         if (!window.speechSynthesis) {
-            this.debug('❌ Speech synthesis not supported in this browser.');
-            console.error('Speech synthesis not supported in this browser.');
             if (onEnd) onEnd();
             return;
         }
 
-        this.debug(`🔊 Speaking: "${text.substring(0, 50)}${text.length > 50 ? '...' : ''}" (${lang})`);
-        console.log(`Using Browser TTS for: "${text}" (${lang})`);
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = lang;
-        utterance.rate = this.speechRate;
-        utterance.volume = this.speechVolume;
         
         // Get available voices and pick the best one for the language
         const voices = window.speechSynthesis.getVoices();
@@ -1185,9 +1215,6 @@ class TypingTutor {
         // Use user-selected voice if available
         if (this.selectedVoiceName) {
             selectedVoice = voices.find(v => v.name === this.selectedVoiceName);
-            if (selectedVoice) {
-                this.debug(`Using selected voice: ${selectedVoice.name}`);
-            }
         }
         
         // Otherwise, auto-select best voice for language
@@ -1208,12 +1235,10 @@ class TypingTutor {
         
         if (selectedVoice) {
             utterance.voice = selectedVoice;
-            console.log(`Using voice: ${selectedVoice.name} (${selectedVoice.lang})`);
         }
         
         utterance.onend = () => { if (onEnd) onEnd(); };
-        utterance.onerror = (e) => {
-            console.error('SpeechSynthesis Error:', e);
+                utterance.onerror = () => {
             if (onEnd) onEnd();
         };
 
@@ -1227,12 +1252,19 @@ class TypingTutor {
     
     // Start the lesson
     startLesson() {
+        const selectedLessonIndex = Number(this.elements.lessonSelect.value);
+        if (!Number.isNaN(selectedLessonIndex)) {
+            this.currentLessonIndex = selectedLessonIndex;
+        }
+
         this.isLessonActive = true;
         this.currentStepIndex = 0;
         this.waitingForNextLesson = false;
+        this.clearPressedModifiers();
         this.elements.startBtn.disabled = true;
         this.elements.repeatBtn.disabled = false;
         this.elements.skipBtn.disabled = false;
+        this.elements.lessonSelect.disabled = true;
         
         // Reset stats if starting over
         this.correctCount = 0;
@@ -1241,8 +1273,7 @@ class TypingTutor {
         this.updateStats();
         
         // Update lesson title
-        const lesson = LESSONS[this.currentLessonIndex];
-        this.elements.currentLevel.textContent = lesson.title;
+        this.updateLessonDisplay();
         
         this.loadNextStep();
     }
@@ -1273,6 +1304,7 @@ class TypingTutor {
         this.isCheckingAnswer = false;
         this.spaceSequenceCount = 0;
         this.lastSpaceSequenceTime = 0;
+        this.clearPressedModifiers();
         
         switch(step.type) {
             case 'instruction':
@@ -1308,14 +1340,6 @@ class TypingTutor {
                 this.elements.userInput.focus();
                 break;
                 
-            case 'enter_practice':
-                // Wait for Enter key
-                this.elements.targetText.textContent = step.text;
-                this.elements.userInput.disabled = false;
-                this.speak(step.text, true, 'es-ES');
-                this.elements.userInput.focus();
-                break;
-                
             case 'letter':
                 // Type a single letter
                 this.currentExpected = step.key.toLowerCase();
@@ -1335,6 +1359,15 @@ class TypingTutor {
                 this.speak(step.text, true, 'es-ES');
                 this.elements.userInput.focus();
                 break;
+
+            case 'capital_letter':
+                this.currentExpected = step.key;
+                this.elements.targetText.textContent = `${step.key} (${step.shiftName})`;
+                this.elements.userInput.disabled = false;
+                this.elements.userInput.readOnly = true;
+                this.speak(step.text, true, 'es-ES');
+                this.elements.userInput.focus();
+                break;
         }
     }
     
@@ -1347,7 +1380,7 @@ class TypingTutor {
     
     // Skip current step
     skipWord() {
-        if (this.currentStep && (this.currentStep.type === 'letter' || this.currentStep.type === 'word')) {
+        if (this.currentStep && (this.currentStep.type === 'letter' || this.currentStep.type === 'word' || this.currentStep.type === 'capital_letter')) {
             this.incorrectCount++;
             this.updateStats();
         }
@@ -1355,6 +1388,16 @@ class TypingTutor {
         this.speak("Saltando. " + STRINGS.nextWord, true, 'es-ES');
         this.currentStepIndex++;
         this.loadNextStep();
+    }
+
+    handleKeyup(e) {
+        if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+            this.pressedShiftCodes.delete(e.code);
+        }
+    }
+
+    clearPressedModifiers() {
+        this.pressedShiftCodes.clear();
     }
     
     // Handle input as user types
@@ -1430,6 +1473,10 @@ class TypingTutor {
     
     // Handle keydown events
     handleKeydown(e) {
+        if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+            this.pressedShiftCodes.add(e.code);
+        }
+
         if (e.key !== ' ') {
             this.spaceSequenceCount = 0;
             this.lastSpaceSequenceTime = 0;
@@ -1469,6 +1516,11 @@ class TypingTutor {
         }
         
         if (!this.currentStep) return;
+
+        if (this.currentStep.type === 'capital_letter') {
+            this.handleCapitalLetterKeydown(e);
+            return;
+        }
 
         // Allow space to skip or repeat instruction steps
         if (this.currentStep.type === 'instruction') {
@@ -1548,8 +1600,7 @@ class TypingTutor {
         // Interrupt current speech only for non-typing steps
         if (
             (this.currentStep.type === 'instruction' ||
-                this.currentStep.type === 'space_practice' ||
-                this.currentStep.type === 'enter_practice') &&
+                this.currentStep.type === 'space_practice') &&
             window.speechSynthesis &&
             window.speechSynthesis.speaking
         ) {
@@ -1575,24 +1626,59 @@ class TypingTutor {
             return;
         }
         
-        // Handle Enter key for enter_practice step
-        if (this.currentStep.type === 'enter_practice') {
-            e.preventDefault();
-            
-            if (e.key === 'Enter') {
-                this.speak(this.currentStep.onSuccess, true, 'es-ES', () => {
-                    setTimeout(() => {
-                        this.currentStepIndex++;
-                        this.loadNextStep();
-                    }, 500);
-                });
-            } else {
-                // Wrong key pressed - just speak the key name
-                const keyName = KEY_NAMES[e.key] || e.key;
-                this.speak(keyName, true, 'es-ES');
-            }
+    }
+
+    handleCapitalLetterKeydown(e) {
+        const step = this.currentStep;
+        const activeShiftCodes = Array.from(this.pressedShiftCodes);
+        const requiredShiftPressed = this.pressedShiftCodes.has(step.shiftCode);
+        const onlyRequiredShiftPressed = requiredShiftPressed && activeShiftCodes.length === 1;
+
+        if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
             return;
         }
+
+        e.preventDefault();
+
+        if (e.getModifierState && e.getModifierState('CapsLock') && !requiredShiftPressed) {
+            this.speak(STRINGS.capsLockOff, true, 'es-ES');
+            return;
+        }
+
+        if (e.code === 'CapsLock') {
+            this.speak(STRINGS.capsLockOff, true, 'es-ES');
+            return;
+        }
+
+        if (e.code === step.keyCode && onlyRequiredShiftPressed) {
+            this.completeCapitalLetterStep(step.key);
+            return;
+        }
+
+        if (e.code === step.keyCode) {
+            this.speak(`${STRINGS.useShift} ${step.shiftName} para escribir ${step.key}.`, true, 'es-ES');
+            return;
+        }
+
+        const spokenKey = KEY_NAMES[e.code] || KEY_NAMES[e.key] || e.key.toUpperCase();
+        this.speak(`${STRINGS.expectedCapital} ${step.key} con ${step.shiftName}. Escuché ${spokenKey}.`, true, 'es-ES');
+    }
+
+    completeCapitalLetterStep(letter) {
+        this.clearPressedModifiers();
+        this.correctCount++;
+        this.wordsCompleted++;
+        this.updateStats();
+        this.elements.userInput.value = letter;
+        this.elements.userInput.style.borderColor = '#00ff00';
+        this.elements.userInput.disabled = true;
+
+        this.speak(STRINGS.correct, true, 'es-ES', () => {
+            setTimeout(() => {
+                this.currentStepIndex++;
+                this.loadNextStep();
+            }, 500);
+        });
     }
     
     // Check if the typed answer is correct
@@ -1643,10 +1729,12 @@ class TypingTutor {
     // Complete the current lesson
     completeLesson() {
         this.isLessonActive = false;
+        this.clearPressedModifiers();
         this.elements.userInput.disabled = false;
         this.elements.startBtn.disabled = false;
         this.elements.repeatBtn.disabled = true;
         this.elements.skipBtn.disabled = true;
+        this.elements.lessonSelect.disabled = false;
         
         // Check if user should advance to next lesson
         const accuracy = this.calculateAccuracy();
@@ -1665,6 +1753,7 @@ class TypingTutor {
         }
         
         this.currentStepIndex = 0;
+        this.updateLessonDisplay();
         this.elements.targetText.textContent = STRINGS.pressStart;
     }
     

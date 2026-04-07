@@ -1,5 +1,5 @@
-                        <!DOCTYPE html>
-            html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,6 @@
         }
         
         .container {
-            max-width: 800px;
             margin: 0 auto;
         }
         
@@ -196,35 +195,6 @@
             text-align: center;
             padding: 40px;
         }
-        
-        #debugPanel {
-            background-color: #1a1a1a;
-            border: 2px solid #00aaff;
-            border-radius: 5px;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            max-height: 200px;
-            overflow-y: auto;
-            font-family: monospace;
-        }
-        
-        .debug-line {
-            margin: 3px 0;
-            padding: 2px 5px;
-        }
-        
-        .debug-success {
-            color: #00ff00;
-        }
-        
-        .debug-error {
-            color: #ff6600;
-        }
-        
-        .debug-info {
-            color: #00aaff;
-        }
     </style>
 </head>
 <body>
@@ -259,6 +229,9 @@
         </div>
         
         <div class="button-group">
+            <select id="lessonSelect" aria-label="Seleccionar lección">
+                <option value="">Cargando lecciones...</option>
+            </select>
             <button id="startBtn" aria-label="Iniciar lección">Iniciar Lección</button>
             <button id="repeatBtn" disabled aria-label="Repetir instrucciones">Repetir Instrucciones</button>
             <button id="skipBtn" disabled aria-label="Saltar a la siguiente palabra">Saltar Palabra</button>
@@ -287,12 +260,6 @@
                     <div class="stat-label">Palabras Completadas</div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Debug Panel -->
-        <div id="debugPanel">
-            <strong>🐛 Debug Log:</strong>
-            <div id="debugLog"></div>
         </div>
         
         <!-- Screen reader announcements -->

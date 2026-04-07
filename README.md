@@ -7,7 +7,9 @@ A fully accessible, client-side typing tutor application designed specifically f
 - **Browser-Powered TTS**: Uses your browser's built-in speech synthesis - no server or API required!
 - **Zero Setup**: Just open and use - works completely offline
 - **Full Voice Feedback**: All instructions and feedback spoken in Spanish
+- **Lesson Picker**: Choose any lesson directly from the main page
 - **Progressive Difficulty**: Three levels (Beginner, Intermediate, Advanced) with increasing complexity
+- **Capital Letter Training**: Includes dedicated uppercase lessons that require the correct left or right Shift key
 - **Real-time Feedback**: Visual border colors change as users type (green = correct, red = incorrect)
 - **Space Bar Submission**: Press space to submit answers or double-tap space to repeat instructions
 - **Auto-Recognition**: Automatically advances when you type the complete word correctly
@@ -21,9 +23,7 @@ A fully accessible, client-side typing tutor application designed specifically f
 spanish-typing-tutor/
 ├── index.html                      # Main HTML structure
 ├── spanish-typing-tutor.js         # Application logic
-├── README.md                        # This file
-├── GEMINI_SETUP.md                 # Historical documentation
-└── MIGRATION_SUMMARY.md            # Migration history
+└── README.md                       # This file
 ```
 
 ## 🚀 Quick Start
@@ -44,24 +44,19 @@ Visit: **[https://desdelgadillo.github.io/Spanish-Typing-Tutor/](https://desdelg
 ## 🎮 Controls
 
 - **Iniciar Lección** — Begin the typing lesson
+- **Seleccionar Lección** — Choose which lesson to practice before starting
 - **Repetir Instrucciones** — Hear the current word again
 - **Saltar Palabra** — Skip to the next word (counts as incorrect)
-- **Configuración** — Change voice, encoding, and speech rate (with server)
+- **Seleccionar Voz** — Use a specific Spanish voice when your browser exposes one
+- **Space Bar** — Submit your answer
+- **Double-tap Space** — Repeat the last instruction
 
 ## 📊 Lesson Structure
 
-### Lesson 1: Home Row - Left Hand (Fila Base - Mano Izquierda)
-- Introduction to the Enter key
-- Letters: F, D, S, A (left-hand home row)
-- Practice words: sad, dad, add, as
-
-### Lesson 2: Home Row - Right Hand (Fila Base - Mano Derecha)
-- Letters: J, K, L (right-hand home row)
-- Practice words using both hands: all, ask, fall, salad
-
-### Lesson 3: Home Row Mastery (Práctica de Fila Base)
-- Extended practice with home row letters
-- Challenge words: lad, lass, flask, falls
+- Home-row lessons for left and right hand placement
+- Progressive word drills built from introduced letters
+- Capital-letter lessons that require the correct Shift key
+- Automatic lesson advancement when accuracy is high enough
 
 ## ♿ Accessibility Features
 
@@ -73,38 +68,12 @@ Visit: **[https://desdelgadillo.github.io/Spanish-Typing-Tutor/](https://desdelg
 - **Focus Indicators**: Clear blue border on focused elements
 - **Spanish Instructions**: All UI text and feedback in Spanish
 
-## 🔊 Speech Synthesis Options
+## 🔊 Speech Synthesis
 
-### Built-in Web Speech API (No Setup Required)
-- Works in all modern browsers
-- No server needed
-- Basic voice quality
-- Automatic voice selection based on OS language
-
-### Google Cloud Text-to-Speech (Server Required)
-- High-quality Wavenet voices
-- Requires Google Cloud account and credentials
-- Run with `npm start`
-
-### Vertex AI Neural TTS (Server Required, Recommended)
-- Premium natural-sounding voices
-- Neural2 voice family with multiple gender/style options
-- Requires Google Cloud account, billing enabled, and Vertex AI API
-- Recommended for production use
-
-## 🔧 Configuration
-
-### Via Settings Button
-
-Click "Configuración" in the app to adjust:
-
-## 🎮 Controls
-
-- **Iniciar Lección** — Begin the typing lesson
-- **Repetir Instrucciones** — Hear the current word again
-- **Saltar Palabra** — Skip to the next word (counts as incorrect)
-- **Space Bar** — Submit your answer
-- **Double-tap Space** — Repeat the last instruction
+- Uses the browser Web Speech API only
+- Works offline once the page is loaded
+- Voice availability depends on the browser and OS voices installed
+- No backend, API key, or cloud setup is required
 
 ## 🌐 Browser Support
 
@@ -144,7 +113,6 @@ The UI is fully in Spanish for native Spanish speakers. To modify content:
 1. Click anywhere on the page to enable audio (browser requirement)
 2. Check browser volume and system volume
 3. Check browser console (F12) for JavaScript errors
-4. Check the Debug Log section at the bottom of the page
 
 ### "Poor voice quality"
 - Chrome/Chromium has the best voice quality
